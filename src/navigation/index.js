@@ -1,5 +1,6 @@
 import { DrawerNavigator, StackNavigator } from 'react-navigation'
-import {Settings, Home, Auth} from '../screens'
+import { Home, Settings } from '../screens'
+import Receipts from '../screens/Receipts'
 
 const Main = StackNavigator({
   home: {
@@ -17,7 +18,7 @@ const Drawer = DrawerNavigator({
 
 export default StackNavigator({
   auth: {
-    screen: Auth
+    screen: Receipts
   }, app: {
     screen: Drawer
   }

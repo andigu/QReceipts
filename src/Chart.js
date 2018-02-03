@@ -1,11 +1,10 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
-import { StyleSheet, View } from 'react-native';
-import Chart from './chart/Chart';
+import { StyleSheet, View } from 'react-native'
+import Chart from './chart/Chart'
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
     height: 200,
     justifyContent: 'center',
     alignItems: 'center',
@@ -15,17 +14,17 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
   },
-});
+})
 
 const data = [
   [0, 1],
   [1, 3],
   [3, 7],
   [4, 9],
-];
+]
 
 export default class SimpleChart extends Component {
-  render() {
+  render () {
     return (
       <View style={styles.container}>
         <Chart
@@ -33,8 +32,8 @@ export default class SimpleChart extends Component {
           data={data}
           verticalGridStep={5}
           type="line"
-          showDataPoint={true}/>
+          showDataPoint/>
       </View>
-    );
+    )
   }
 }

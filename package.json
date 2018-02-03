@@ -17,10 +17,11 @@
     "preset": "react-native"
   },
   "dependencies": {
+    "moment": "^2.20.1",
+    "native-base": "^2.3.8",
     "prop-types": "^15.6.0",
     "react": "16.2.0",
     "react-native": "0.52.0",
-    "react-native-chart": "^1.0.8-beta",
     "react-native-dimension": "^1.0.6",
     "react-navigation": "^1.0.0-beta.28"
   }

@@ -2,12 +2,14 @@
   "receipts": [
     {
       "id": 1,
+      "date": 1517690866,
       "vendor": {
         "name": "Walmart",
         "id": 1,
+        "img": "http://logok.org/wp-content/uploads/2014/05/Walmart-Logo-880x645.png",
         "location": {
-          "lat": "40.92",
-          "lng": "10.24"
+          "lat": "40.714224",
+          "lng": "-73.961452"
         }
       },
       "items": [
@@ -55,14 +57,17 @@
       "subtotal": 3034,
       "tax": 394,
       "total": 3428
-    }, {
+    },
+    {
       "id": 2,
+      "date": 1517690866,
       "vendor": {
         "name": "Jack Aster's",
         "id": 2,
+        "img": "https://upload.wikimedia.org/wikipedia/en/4/43/Jack_Astor%27s_Bar_%26_Grill_logo.png",
         "location": {
-          "lat": "40.162",
-          "lng": "11.25"
+          "lat": "40.714254",
+          "lng": "-73.961422"
         }
       },
       "items": [

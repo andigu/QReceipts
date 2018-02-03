@@ -3,8 +3,89 @@
 2. GraphQL Link up boii
 */
 import React, { Component } from 'react'
-import { Animated, FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View, Dimensions } from 'react-native'
+import { Animated, Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { height, totalSize, width } from 'react-native-dimension'
+import { Body, Container, Header, Icon, Input, Item, List, ListItem, Right, Thumbnail, Title } from 'native-base'
+import Address from '../lib/Address'
+import IconRow from '../lib/IconRow'
+import Date from '../lib/Date'
+
+const {width: screenWidth} = Dimensions.get('window')
+
+export default class Receipts extends Component {
+  state = {
+    searchPressed: false,
+    searchText: '',
+    data: require('../mock').receipts
+  }
+
+  searchBarWidth = new Animated.Value(0)
+
+  render () {
+    return (
+      <Container style={{backgroundColor: 'white'}}>
+        {this.state.searchPressed ? <Header searchBar rounded>
+          <Animated.View style={{
+            width: this.searchBarWidth
+          }}>
+            <Item>
+              <TouchableOpacity onPress={() => {
+                Animated.timing(this.searchBarWidth, {
+                  toValue: 0,
+                  duration: 300
+                }).start(() => {
+                  this.setState({searchPressed: false})
+                })
+              }}><Icon name="arrow-back" style={{color: 'black'}}/></TouchableOpacity>
+              <Input placeholder="Search" onChangeText={(searchText) => {
+                this.setState({searchText})
+              }}/>
+            </Item>
+          </Animated.View>
+        </Header> : <Header>
+          <Body>
+          <Title>
+            Receipts
+          </Title>
+          </Body>
+          < Right>
+            < TouchableOpacity rounded onPress={() => {
+              this.setState({searchPressed: true})
+              Animated.timing(this.searchBarWidth, {
+                toValue: screenWidth,
+                duration: 300
+              }).start()
+            }}>
+              <Icon name='search' style={{color: 'white', fontSize: 24}}/>
+            </TouchableOpacity>
+          </Right>
+        </Header>}
+        <List>
+          {this.state.data.map((item, i) =>
+            <ListItem key={i} onPress={() => {}}>
+              <Thumbnail square size={80} source={{uri: item.vendor.img}}/>
+              <Body style={{paddingLeft: 20}}>
+              <Text style={{
+                fontSize: totalSize(3),
+                fontFamily: 'Avenir-Heavy',
+                color: 'rgba(0,0,0,0.6)'
+              }}> {item.vendor.name}</Text>
+              <IconRow iconName="pin">
+                <Address style={{fontSize: 14}} location={item.vendor.location}/>
+              </IconRow>
+              <IconRow iconName="calendar">
+                <Date style={{fontSize: 14}} dateInMs={item.date} format={'MM/DD/YYYY'}/>
+              </IconRow>
+              <Text style={{alignSelf: 'flex-end', fontWeight: '500', fontSize: 20}}>${item.total / 100}</Text>
+              </Body>
+            </ListItem>
+          )}
+        </List>
+
+      </Container>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   item: {
@@ -38,13 +119,7 @@ const styles = StyleSheet.create({
     top: height(1.8),
   },
 
-  title: {
-    marginBottom: height(23),
-    marginLeft: width(5),
-    fontSize: totalSize(2.5),
-    fontFamily: 'Avenir-Heavy',
-    color: 'rgba(0,0,0,0.6)',
-  },
+  title: {},
 
   description: {
     width: width(95),
@@ -55,7 +130,7 @@ const styles = StyleSheet.create({
   },
 
   descriptionText: {
-    fontSize: totalSize(1.5),
+    fontSize: totalSize(2),
     color: 'rgba(0,0,0,0.6)',
     fontFamily: 'Avenir-Roman',
   },
@@ -81,176 +156,3 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   }
 })
-
-_keyExtractor = (item, index) => item.id
-
-export default class Receipts extends Component {
-  state = {
-    searchPressed: null,
-    searchText: '',
-  }
-
-  componentWillMount () {
-    this.animatedValue = new Animated.Value(1)
-  }
-
-  componentDidMount () {
-    Animated.timing(this.animatedValue, {
-      toValue: 0.3,
-      duration: 200,
-    }).start()
-  }
-
-  _searchPressed () {
-    if (this.state.searchPressed == false || this.state.searchPressed == null) {
-      this.setState({searchPressed: true})
-    }
-  }
-
-  _onPressCancel () {
-    this.setState({searchText: ''})
-    //this.setState({searchPressed: false})
-  }
-
-  render () {
-    const database = require('../../database')
-    const animatedStyle = {marginLeft: this.animatedValue}
-    return (
-      <View style={{
-        backgroundColor: '#f2f2f2',
-        height: height(100),
-      }}>
-        <View style={styles.topBar}>
-          <Text style={styles.topBarText}>Receipts</Text>
-        </View>
-
-        <View style={{
-          height: height(6.15),
-          backgroundColor: 'rgba(255, 255, 255, 1)',
-        }}>
-          <Image
-            source={require('../../assets/images/search.png')}
-            style={{
-              tintColor: 'rgba(200,200,200,1)',
-              height: totalSize(2),
-              width: totalSize(2),
-              position: 'absolute',
-              top: height(1.9),
-              left: width(2),
-              zIndex: 1,
-            }}
-          />
-          <TextInput
-            style={{
-              height: height(6),
-              width: width(93),
-              marginLeft: width(7),
-              padding: 5,
-              backgroundColor: 'white',
-              zIndex: 0,
-            }}
-            value={this.state.searchText}
-            onChangeText={(text) => this.setState({searchText: text})}
-            onSelectionChange={() => this._searchPressed()}
-            placeholder="Search"
-            autoCapitalize="none"
-          />
-
-          {(() => {
-            if (this.state.searchPressed) {
-              return <TouchableOpacity
-                onPress={() => this._onPressCancel()}
-                style={{
-                  position: 'absolute',
-                  left: width(85),
-                  top: height(2),
-                }}>
-                <View style={{
-                  backgroundColor: 'rgba(0,0,0,0)',
-                }}>
-                  <Text style={{
-                    color: 'rgb(100, 174, 239)'
-                  }}>Cancel</Text>
-                </View>
-              </TouchableOpacity>
-            }
-          })()}
-
-          <View style={{
-            backgroundColor: '#f2f2f2',
-            height: height(0.15),
-          }}/>
-        </View>
-
-
-        <FlatList
-          data={database.names.charities}
-          keyExtractor={this._keyExtractor}
-          renderItem={({item}) => (
-            <View style={styles.item}>
-
-              <View style={styles.iconView}>
-
-                <TouchableOpacity style={{
-                  height: height(5),
-                  marginBottom: height(12),
-                }}>
-                  <Text style={styles.title}>{item.name}</Text>
-                </TouchableOpacity>
-
-              </View>
-
-              <View style={styles.description}>
-                <Text style={styles.descriptionText}>   {item.description}</Text>
-
-                <TouchableOpacity>
-                  <View style={{
-                    flex: 1,
-                    flexDirection: 'row',
-                    padding: 2,
-                  }}>
-                    <Image
-                      source={require('../../assets/images/location.png')}
-                      style={[styles.icons, {tintColor: 'rgb(140, 140, 140)'}]}
-                    />
-
-                    <Text style={[styles.descriptionText, {
-                      marginTop: height(1.25),
-                      marginLeft: width(1)
-                    }]}>{item.address}</Text>
-
-                  </View>
-                </TouchableOpacity>
-
-                <View style={{
-                  flex: 1,
-                  flexDirection: 'row',
-                  padding: 2,
-                }}>
-                  <Image
-                    source={require('../../assets/images/phone.png')}
-                    style={[styles.icons, {tintColor: 'rgb(140, 140, 140)'}]}
-                  />
-
-                  <Text style={[styles.descriptionText, {
-                    marginTop: height(1.25),
-                    marginLeft: width(2)
-                  }]}>{item.number}</Text>
-
-                  <TouchableOpacity>
-                    <Image
-                      source={require('../../assets/images/go.png')}
-                      style={[styles.icons, {tintColor: 'rgb(140, 140, 140)', marginLeft: width(57.5)}]}
-                    />
-                  </TouchableOpacity>
-                </View>
-              </View>
-
-            </View>
-          )}
-        />
-
-      </View>
-    )
-  }
-}
