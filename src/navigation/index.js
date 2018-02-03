@@ -1,11 +1,14 @@
 import { DrawerNavigator, StackNavigator } from 'react-navigation'
 import { Home, Settings } from '../screens'
 import QRCode from '../screens/QRCode'
+import Auth from '../screens/Auth'
 
 const Main = StackNavigator({
   home: {
     screen: Home
   }
+}, {
+  headerMode: 'none'
 })
 
 const Drawer = DrawerNavigator({
@@ -18,8 +21,8 @@ const Drawer = DrawerNavigator({
 
 export default StackNavigator({
   auth: {
-    screen: QRCode
+    screen: Auth
   }, app: {
     screen: Drawer
   }
-}, {headerMode: 'none'})
+}, {headerMode: 'none', initialRouteName: 'app'})
