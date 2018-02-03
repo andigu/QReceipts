@@ -1,0 +1,53 @@
+{
+  "login": {
+    "riceball101":"iloverice",
+    "jsun2018": "jessesun",
+    "x":"y"
+  },
+
+  "names": {
+    "charities": [
+      {"name": "Walmart 09/01/2018",
+        "key": 1,
+        "needs": ["Jackets", "Mittens", "Canned Beans"],
+        "address": "5700 Cancross Ct, Mississauga, ON L5R 3E9",
+        "number": "905-555-5555",
+      },
+      {"name": "Supreme NY 08/01/2018",
+        "key": 2,
+        "address": "1006 N 20th St, Omaha, NE 68102",
+        "number": "905-555-2355",
+
+      },
+      {"name": "Rolex 08/01/2018",
+        "key": 3,
+        "address": "40 Bristol Rd E, Mississauga, ON L4Z 3K8",
+        "number": "905-555-1209",
+      },
+      {"name": "Lamborgini 07/01/2018",
+        "key": 4,
+        "needs": ["Jackets", "Mittens", "Canned Beans"],
+        "address": "5700 Cancross Ct, Mississauga, ON L5R 3E9",
+        "number": "905-555-5555",
+      },
+      {"name": "Amazon Canada 05/01/2018",
+        "key": 5,
+        "needs": ["Jackets", "Mittens", "Canned Beans"],
+        "address": "5700 Cancross Ct, Mississauga, ON L5R 3E9",
+        "number": "905-555-5555",
+      },
+      {"name": "EBay 04/01/2018",
+        "key": 6,
+        "needs": ["Jackets", "Mittens", "Canned Beans"],
+        "address": "5700 Cancross Ct, Mississauga, ON L5R 3E9",
+        "number": "905-555-5555",
+      },
+      {"name": "Amazon Canada 03/01/2018",
+        "key": 7,
+        "needs": ["Jackets", "Mittens", "Canned Beans"],
+        "address": "5700 Cancross Ct, Mississauga, ON L5R 3E9",
+        "number": "905-555-5555",
+      },
+    ]
+  },
+}
