@@ -30,6 +30,12 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Your camera is in use</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Your camera roll is in use</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Your microphone is in use</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

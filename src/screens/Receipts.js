@@ -1,24 +1,17 @@
-//main feed
-/*To DO:
-2. GraphQL Link up boii
-*/
 import React, { Component } from 'react'
-import { Animated, Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { height, totalSize, width } from 'react-native-dimension'
+import { Animated, Dimensions, Text, TouchableOpacity } from 'react-native'
+import { totalSize } from 'react-native-dimension'
 import { Body, Container, Header, Icon, Input, Item, List, ListItem, Right, Thumbnail, Title } from 'native-base'
-import Address from '../lib/Address'
-import IconRow from '../lib/IconRow'
-import Date from '../lib/Date'
+import { Address, Date, IconRow } from '../lib'
 
 const {width: screenWidth} = Dimensions.get('window')
+const data = require('../mock').receipts
 
 export default class Receipts extends Component {
   state = {
     searchPressed: false,
-    searchText: '',
-    data: require('../mock').receipts
+    data
   }
-
   searchBarWidth = new Animated.Value(0)
 
   render () {
@@ -30,15 +23,16 @@ export default class Receipts extends Component {
           }}>
             <Item>
               <TouchableOpacity onPress={() => {
+                this.setState({data})
                 Animated.timing(this.searchBarWidth, {
                   toValue: 0,
-                  duration: 300
+                  duration: 200
                 }).start(() => {
                   this.setState({searchPressed: false})
                 })
               }}><Icon name="arrow-back" style={{color: 'black'}}/></TouchableOpacity>
-              <Input placeholder="Search" onChangeText={(searchText) => {
-                this.setState({searchText})
+              <Input autoFocus placeholder="Search" onChangeText={(searchText) => {
+                this.setState({data: data.filter((x) => x.vendor.name.toLowerCase().indexOf(searchText) !== -1)})
               }}/>
             </Item>
           </Animated.View>
@@ -53,7 +47,7 @@ export default class Receipts extends Component {
               this.setState({searchPressed: true})
               Animated.timing(this.searchBarWidth, {
                 toValue: screenWidth,
-                duration: 300
+                duration: 200
               }).start()
             }}>
               <Icon name='search' style={{color: 'white', fontSize: 24}}/>
@@ -86,73 +80,3 @@ export default class Receipts extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  item: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: height(20),
-    marginBottom: height(2),
-    backgroundColor: 'rgb(255,255,255)',
-  },
-
-  topBar: {
-    backgroundColor: 'rgb(76, 74, 74)',
-    height: height(8),
-  },
-
-  topBarText: {
-    color: 'rgba(255,255,255,1)',
-    textAlign: 'center',
-    fontFamily: 'AvenirNext-Bold',
-    marginTop: height(2),
-    fontSize: totalSize(2.8),
-  },
-
-  search: {
-    tintColor: 'rgba(255,255,255,1)',
-    height: totalSize(3.5),
-    width: totalSize(3.5),
-    position: 'absolute',
-    left: width(88),
-    top: height(1.8),
-  },
-
-  title: {},
-
-  description: {
-    width: width(95),
-    backgroundColor: 'rgba(0,0,0,0)',
-    position: 'absolute',
-    left: width(3),
-    top: height(5.5),
-  },
-
-  descriptionText: {
-    fontSize: totalSize(2),
-    color: 'rgba(0,0,0,0.6)',
-    fontFamily: 'Avenir-Roman',
-  },
-
-  checkOutButton: {
-    backgroundColor: 'rgba(234, 234, 234, 0.3)',
-    width: width(100),
-    height: height(5),
-    position: 'absolute',
-    right: width(0),
-    top: width(18),
-  },
-
-  icons: {
-    height: totalSize(2.5),
-    width: totalSize(2.5),
-    marginLeft: width(2),
-    marginTop: height(0.6),
-  },
-
-  iconView: {
-    flex: 1,
-    flexDirection: 'row',
-  }
-})
