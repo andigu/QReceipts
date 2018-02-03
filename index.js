@@ -1,4 +1,8 @@
+import React from 'react'
+
 import { AppRegistry } from 'react-native';
 import App from './App';
-import Receipts from './receipts.js'
-AppRegistry.registerComponent('QReceipts', () => Receipts);
+import Chart from './src/Chart'
+
+import Receipts from './src/screens/Receipts.js'
+AppRegistry.registerComponent('QReceipts', () => Chart);

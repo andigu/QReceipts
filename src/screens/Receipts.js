@@ -85,16 +85,9 @@ const styles = StyleSheet.create({
 _keyExtractor = (item, index) => item.id
 
 export default class Receipts extends Component {
-
   state = {
     searchPressed: null,
     searchText: '',
-  }
-
-  static navigationOptions = {
-    title: 'Home',
-    header: null,
-
   }
 
   componentWillMount () {
@@ -120,7 +113,7 @@ export default class Receipts extends Component {
   }
 
   render () {
-    const database = require('./database')
+    const database = require('../../database')
     const animatedStyle = {marginLeft: this.animatedValue}
     return (
       <View style={{
@@ -136,7 +129,7 @@ export default class Receipts extends Component {
           backgroundColor: 'rgba(255, 255, 255, 1)',
         }}>
           <Image
-            source={require('./assets/images/search.png')}
+            source={require('../../assets/images/search.png')}
             style={{
               tintColor: 'rgba(200,200,200,1)',
               height: totalSize(2),
@@ -217,7 +210,7 @@ export default class Receipts extends Component {
                     padding: 2,
                   }}>
                     <Image
-                      source={require('./assets/images/location.png')}
+                      source={require('../../assets/images/location.png')}
                       style={[styles.icons, {tintColor: 'rgb(140, 140, 140)'}]}
                     />
 
@@ -235,7 +228,7 @@ export default class Receipts extends Component {
                   padding: 2,
                 }}>
                   <Image
-                    source={require('./assets/images/phone.png')}
+                    source={require('../../assets/images/phone.png')}
                     style={[styles.icons, {tintColor: 'rgb(140, 140, 140)'}]}
                   />
 
@@ -246,7 +239,7 @@ export default class Receipts extends Component {
 
                   <TouchableOpacity>
                     <Image
-                      source={require('./assets/images/go.png')}
+                      source={require('../../assets/images/go.png')}
                       style={[styles.icons, {tintColor: 'rgb(140, 140, 140)', marginLeft: width(57.5)}]}
                     />
                   </TouchableOpacity>
