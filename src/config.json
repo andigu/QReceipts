@@ -1,3 +1,4 @@
 {
-  "geo_code_key": "AIzaSyCd62fi11yZrzIxvrO-5Ba54a3c05mNCew"
+  "geo_code_key": "AIzaSyCd62fi11yZrzIxvrO-5Ba54a3c05mNCew",
+  "api": "http://172.17.51.157:8080"
 }

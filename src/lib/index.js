@@ -45,3 +45,35 @@ export class Address extends Component<{ style: any, location: { lat: Number, ln
     </Text>
   }
 }
+
+export const TagIcon = ({tag}) => {
+  let [color, iconName] = ['', '']
+  switch (tag) {
+    case 'Food':
+      [color, iconName] = ['#ffa030', 'pizza']
+      break
+    case 'Entertainment':
+      [color, iconName] = ['#f4ff38', 'beer']
+      break
+    case 'Clothing':
+      [color, iconName] = ['#89ecff', 'shirt']
+      break
+    case 'Bills':
+      [color, iconName] = ['#7aff6b', 'cash']
+      break
+    case 'Miscellaneous':
+      [color, iconName] = ['#000', 'more']
+      break
+  }
+  return iconName === '' ? null : <Icon name={iconName} style={{color, fontSize: 25}}/>
+}
+
+export const Tags = ({tags}) => {
+  if (tags.length > 0) {
+    return <View style={{flexDirection: 'row'}}>
+      {tags.sort().map((tag, i) => <TagIcon tag={tag} key={i}/>)}
+    </View>
+  } else {
+    return null
+  }
+}

@@ -1,5 +1,7 @@
-import Home from './Home'
-import Settings from './Settings'
-import Auth from './Auth'
+import Analytics from './Analytics'
+import Details from './Details'
+import Login from './Login'
+import Receipts from './Receipts'
+import QRCode from './QRCode'
 
-export { Home, Settings, Auth }
+export { Analytics, Details, Login, Receipts, QRCode }
