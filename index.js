@@ -5,4 +5,4 @@ import App from './App'
 import HomeScreen from "./login"
 console.disableYellowBox = true;
 
-AppRegistry.registerComponent('QReceipts', () => HomeScreen)
+AppRegistry.registerComponent('QReceipts', () => App)
