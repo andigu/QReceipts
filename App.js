@@ -1,16 +1,20 @@
-import React from 'react';
+import React from 'react'
 import getTheme from './src/theme/components'
-import material from './src/theme/variables/material';
+import material from './src/theme/variables/material'
 import AppNavigator from './src/navigation'
-import { StyleProvider } from 'native-base'
+import { Root, StyleProvider } from 'native-base'
 
 export default class App extends React.Component {
-  render() {
+  render () {
     return (
-      <StyleProvider style={getTheme(material)}>
-      <AppNavigator/>
-      </StyleProvider>
-    );
+      <Root>
+
+        <StyleProvider style={getTheme(material)}>
+          <AppNavigator/>
+
+        </StyleProvider>
+      </Root>
+    )
   }
 }
 

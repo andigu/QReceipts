@@ -1,28 +1,30 @@
 import { DrawerNavigator, StackNavigator } from 'react-navigation'
-import { Home, Settings } from '../screens'
-import QRCode from '../screens/QRCode'
-import Auth from '../screens/Auth'
+import { Analytics, Details, Login, QRCode, Receipts } from '../screens'
 
 const Main = StackNavigator({
-  home: {
-    screen: Home
+  Home: {
+    screen: Receipts
+  }, Add: {
+    screen: QRCode
+  }, Details: {
+    screen: Details
   }
 }, {
   headerMode: 'none'
 })
 
 const Drawer = DrawerNavigator({
-  main: {
+  Home: {
     screen: Main
-  }, settings: {
-    screen: Settings
+  }, Analytics: {
+    screen: Analytics
   }
 })
 
 export default StackNavigator({
-  auth: {
-    screen: Auth
-  }, app: {
+  Auth: {
+    screen: Login
+  }, App: {
     screen: Drawer
   }
-}, {headerMode: 'none', initialRouteName: 'app'})
+}, {headerMode: 'none'})

@@ -44,19 +44,14 @@
         {
           "id": 684390,
           "name": "Juice",
+          "img": "https://images-na.ssl-images-amazon.com/images/G/31/electronics/B00QPS8OUE.08.jpg",
           "total": 1520,
           "quantity": "1L"
-        },
-        {
-          "id": 29430,
-          "name": "Coupon",
-          "total": -100,
-          "quantity": 1
         }
       ],
-      "subtotal": 3034,
-      "tax": 394,
-      "total": 3428
+      "subtotal": 3134,
+      "tax": 407,
+      "total": 3541
     },
     {
       "id": 2,
